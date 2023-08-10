@@ -6,4 +6,58 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\Close.png" />
+    <None Remove="Resources\Compress.png" />
+    <None Remove="Resources\Decompress.png" />
+    <None Remove="Resources\File Next-WF.png" />
+    <None Remove="Resources\File-Format-ZIP.png" />
+    <None Remove="Resources\Folder-01.png" />
+    <None Remove="Resources\Folder-02.png" />
+    <None Remove="Resources\ic_pause_click.png" />
+    <None Remove="Resources\ic_pause_normal.png" />
+    <None Remove="Resources\ic_play_click.png" />
+    <None Remove="Resources\ic_play_normal.png" />
+    <None Remove="Resources\ic_stop_click.png" />
+    <None Remove="Resources\ic_stop_normal.png" />
+    <None Remove="Resources\Laptop-01.png" />
+    <None Remove="Resources\Logo.jpg" />
+    <None Remove="Resources\Maximize.png" />
+    <None Remove="Resources\Minus.png" />
+    <None Remove="Resources\Robot-01.ico" />
+    <None Remove="Resources\Robot-02.ico" />
+    <None Remove="Resources\robot.png" />
+    <None Remove="Resources\Schedule.png" />
+    <None Remove="Resources\Search-Find.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CTImageViewer.ViewModel\CTImageViewer.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Close.png" />
+    <Resource Include="Resources\Compress.png" />
+    <Resource Include="Resources\Decompress.png" />
+    <Resource Include="Resources\File Next-WF.png" />
+    <Resource Include="Resources\File-Format-ZIP.png" />
+    <Resource Include="Resources\Folder-01.png" />
+    <Resource Include="Resources\Folder-02.png" />
+    <Resource Include="Resources\ic_pause_click.png" />
+    <Resource Include="Resources\ic_pause_normal.png" />
+    <Resource Include="Resources\ic_play_click.png" />
+    <Resource Include="Resources\ic_play_normal.png" />
+    <Resource Include="Resources\ic_stop_click.png" />
+    <Resource Include="Resources\ic_stop_normal.png" />
+    <Resource Include="Resources\Laptop-01.png" />
+    <Resource Include="Resources\Logo.jpg" />
+    <Resource Include="Resources\Maximize.png" />
+    <Resource Include="Resources\Minus.png" />
+    <Resource Include="Resources\Robot-01.ico" />
+    <Resource Include="Resources\Robot-02.ico" />
+    <Resource Include="Resources\robot.png" />
+    <Resource Include="Resources\Schedule.png" />
+    <Resource Include="Resources\Search-Find.png" />
+  </ItemGroup>
+
 </Project>

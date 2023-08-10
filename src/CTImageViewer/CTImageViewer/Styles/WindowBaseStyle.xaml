@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CTImageViewer.Styles"
+                     x:Class="CTImageViewer.Styles.WindowBaseStyle"
+                    >
+
+    <!-- Window Style -->
+    <BitmapImage x:Key="CloseButtonBrush" UriSource="/CTImageViewer;component/Resources/Close.png"></BitmapImage>
+    <BitmapImage x:Key="MaxButtonBrush" UriSource="/CTImageViewer;component/Resources/Maximize.png"></BitmapImage>
+    <BitmapImage x:Key="MinButtonBrush" UriSource="/CTImageViewer;component/Resources/Minus.png"></BitmapImage>
+    <ControlTemplate x:Key="WindowBaseTemplate" TargetType="Window">
+        <Border Margin="3" CornerRadius="1"  >
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="3" RenderingBias="Performance" ShadowDepth="0" Opacity="1"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="#FF00677A">
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Stretch">
+                        <TextBlock  VerticalAlignment="Center" Margin="10,0,20,0"  
+                                   Text="{TemplateBinding Title}" Foreground="#FFFFFF" FontSize="15"></TextBlock>
+                        <StackPanel  Orientation="Horizontal"  Margin="5,0,5,0" VerticalAlignment="Bottom">
+                            <RadioButton Margin="0,0,5,0" Width="60" Height="60" GroupName="Menu" Style="{StaticResource MenuRadioButtonStyle}">
+                                <Image Source="/CTImageViewer;component/Resources/Compress.png"></Image>
+                            </RadioButton>
+                            <RadioButton Margin="0,0,5,0" Width="60" Height="60" GroupName="Menu" Style="{StaticResource MenuRadioButtonStyle}">
+                                <Image Source="/CTImageViewer;component/Resources/Decompress.png"></Image>
+                            </RadioButton>
+                            <RadioButton Margin="0,0,5,0" Width="60" Height="60" GroupName="Menu" Style="{StaticResource MenuRadioButtonStyle}">
+                                <Image Source="/CTImageViewer;component/Resources/Schedule.png"></Image>
+                            </RadioButton>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center">
+                        <Button Height="20" Width="20" Content="{StaticResource MinButtonBrush}"  
+                                Style="{StaticResource ResourceKey=CustomWindowMenuBtn}" Click="WindowBaseBtnMinimized_Click" />
+                        <Button Height="20" Width="20" Content="{StaticResource MaxButtonBrush}"  
+                                Style="{StaticResource ResourceKey=CustomWindowMenuBtn}" Click="WindowBaseBtnMaxNormal_Click" />
+                        <Button Height="20" Width="20" Content="{StaticResource CloseButtonBrush}"  Opacity="1"
+                                Style="{StaticResource ResourceKey=CustomWindowMenuBtn}" Click="WindowBaseBtnClose_Click" />
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="1" Background="White">
+                    <AdornerDecorator>
+                        <ContentPresenter></ContentPresenter>
+                    </AdornerDecorator>
+                </Grid>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="WindowBaseStyle" TargetType="Window">
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome ResizeBorderThickness="5" CaptionHeight="10"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="AllowsTransparency" Value="True"></Setter>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="WindowStyle" Value="None"></Setter>
+        <Setter Property="ResizeMode" Value="CanResize"></Setter>
+        <Setter Property="Template" Value="{StaticResource WindowBaseTemplate}"></Setter>
+    </Style>
+    <!--Window Style End-->
+
+</ResourceDictionary>

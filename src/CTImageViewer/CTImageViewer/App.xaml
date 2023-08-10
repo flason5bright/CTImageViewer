@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:CTImageViewer"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/CustomStyle.xaml"/>
+                <ResourceDictionary Source="Styles/WindowBaseStyle.xaml"/>
+                <ResourceDictionary Source="Styles/OperationButtonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
