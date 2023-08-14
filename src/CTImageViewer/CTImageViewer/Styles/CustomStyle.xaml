@@ -64,6 +64,55 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="MenuButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Background" Value="#F4F4F4"/>
+        <Setter Property="BorderBrush" Value="{StaticResource CheckBoxStroke}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <BulletDecorator Background="Transparent">
+                        <Grid Background="#FF00677A" RenderTransformOrigin="0.5,0.5" >
+                            <Grid.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform AngleX="-15"/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Grid.RenderTransform>
+
+                            <Border BorderThickness="0,0,1,0"  BorderBrush="#FFFFFF"  Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" >
+                                <Border x:Name="bdContent" RenderTransformOrigin="0.5,0.5" Margin="5,5,5,0">
+                                    <ContentPresenter   HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  RecognizesAccessKey="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5,0.5">
+                                    </ContentPresenter>
+                                </Border>
+                            </Border>
+                        </Grid>
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="bdContent" Value="#FF67C7D5"/>
+                            <Setter Property="Margin" TargetName="bdContent" Value="3,3,3,0"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true" >
+                            <Setter Property="Background" TargetName="bdContent" Value="#FF16BFD2"/>
+                            <Setter Property="Margin" TargetName="bdContent" Value="3,3,3,0"/>
+                        </Trigger>
+                        <Trigger Property="HasContent" Value="true">
+                            <Setter Property="FocusVisualStyle" Value="{StaticResource CheckRadioFocusVisual}"/>
+                            <Setter Property="Padding" Value="4,0,0,0"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!--Menu Radio Button End-->
 
     <Style x:Key="CustomWindowMenuBtn" TargetType="Button">
@@ -103,17 +152,17 @@
                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Stretch">
                         <TextBlock  VerticalAlignment="Center" Margin="10,0,20,0"  
                                    Text="{TemplateBinding Title}" Foreground="#FFFFFF" FontSize="30"></TextBlock>
-                        <!--<StackPanel  Orientation="Horizontal"  Margin="5,0,5,0" VerticalAlignment="Bottom">
-                            <RadioButton Margin="0,0,5,0" Width="60" Height="60" GroupName="Menu" Style="{StaticResource MenuRadioButtonStyle}">
-                                <Image Source="/CTImageViewer;component/Resources/Compress.png"></Image>
-                            </RadioButton>
-                            <RadioButton Margin="0,0,5,0" Width="60" Height="60" GroupName="Menu" Style="{StaticResource MenuRadioButtonStyle}">
+                        <StackPanel  Orientation="Horizontal"  Margin="5,0,5,0" VerticalAlignment="Bottom">
+                            <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}">
                                 <Image Source="/CTImageViewer;component/Resources/Decompress.png"></Image>
-                            </RadioButton>
-                            <RadioButton Margin="0,0,5,0" Width="60" Height="60" GroupName="Menu" Style="{StaticResource MenuRadioButtonStyle}">
+                            </Button>
+                            <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}">
+                                <Image Source="/CTImageViewer;component/Resources/Compress.png"></Image>
+                            </Button>
+                            <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}">
                                 <Image Source="/CTImageViewer;component/Resources/Schedule.png"></Image>
-                            </RadioButton>
-                        </StackPanel>-->
+                            </Button>
+                        </StackPanel>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,5,0" VerticalAlignment="Center">

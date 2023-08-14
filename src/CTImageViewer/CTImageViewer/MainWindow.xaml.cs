@@ -142,5 +142,47 @@ namespace CTImageViewer
             mySceneVM.ViewPortHeight = DrawingArea.ActualHeight;
             DataContext = mainVM;
         }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            Button btn = (Button)sender;
+            switch (btn.Tag)
+            {
+                case "Open":
+                    break;
+            }
+        }
+
+        private string OpenFolderDialog()
+        {
+            
+            return "";
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CustomWindow_MouseLeftButtonDown(object sender, MouseEventArgs e)
+        {
+            Window win = (Window)((FrameworkElement)sender).TemplatedParent;
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                win.DragMove();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        private void CustomWindowBtnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Window win = (Window)((FrameworkElement)sender).TemplatedParent;
+            win.Close();
+        }
     }
 }
