@@ -143,22 +143,6 @@ namespace CTImageViewer
             DataContext = mainVM;
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            Button btn = (Button)sender;
-            switch (btn.Tag)
-            {
-                case "Open":
-                    break;
-            }
-        }
-
-        private string OpenFolderDialog()
-        {
-            
-            return "";
-        }
-
         /// <summary>
         /// 
         /// </summary>

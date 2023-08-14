@@ -25,7 +25,7 @@
         <BitmapImage x:Key="MaxButtonBrush" UriSource="/CTImageViewer;component/Resources/Maximize.png"></BitmapImage>
         <BitmapImage x:Key="MinButtonBrush" UriSource="/CTImageViewer;component/Resources/Minus.png"></BitmapImage>
         <ControlTemplate x:Key="CustomWindowTemplate1" TargetType="Window">
-            <Border Margin="3" CornerRadius="1"  MouseLeftButtonDown="CustomWindow_MouseLeftButtonDown">
+            <Border Margin="3" CornerRadius="1"  >
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="3" RenderingBias="Performance" ShadowDepth="0" Opacity="1"/>
                 </Border.Effect>
@@ -42,10 +42,16 @@
                                 <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}"  Command="{Binding OpenCommand}">
                                     <Image Source="/CTImageViewer;component/Resources/Decompress.png"></Image>
                                 </Button>
-                                <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}" Click="ButtonBase_OnClick" Tag="Open">
+                                <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}"  Command="{Binding MoveCommand}">
                                     <Image Source="/CTImageViewer;component/Resources/Compress.png"></Image>
                                 </Button>
-                                <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}" Click="ButtonBase_OnClick" Tag="Open">
+                                <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}"  Command="{Binding DrawRectangleCommand}">
+                                    <Image Source="/CTImageViewer;component/Resources/Compress.png"></Image>
+                                </Button>
+                                <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}" Command="{Binding ScaleCommand}">
+                                    <Image Source="/CTImageViewer;component/Resources/Schedule.png"></Image>
+                                </Button>
+                                <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}" Command="{Binding AdjustWWWLCommand}">
                                     <Image Source="/CTImageViewer;component/Resources/Schedule.png"></Image>
                                 </Button>
                             </StackPanel>
@@ -71,20 +77,10 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"></ColumnDefinition>
             <ColumnDefinition Width="0.8*"></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border BorderThickness="0,0,1,0" BorderBrush="#FFC2C3C9">
-            <StackPanel>
-                <Button Width="50" Height="50" Margin="0,5,0,5"  Style="{StaticResource ButtonStyle}" Command="{Binding OpenCommand}">Open</Button>
-                <Button Width="50" Height="50" Margin="0,0,0,5"  Style="{StaticResource ButtonStyle}" Command="{Binding MoveCommand}">Move</Button>
-                <Button Width="50" Height="50" Margin="0,0,0,5"  Style="{StaticResource ButtonStyle}" Command="{Binding DrawRectangleCommand}">Rect</Button>
-                <Button Width="50" Height="50" Margin="0,0,0,5"  Style="{StaticResource ButtonStyle}" Command="{Binding ScaleCommand}">Scale</Button>
-                <Button Width="50" Height="50" Margin="0,0,0,5"  Style="{StaticResource ButtonStyle}" Command="{Binding AdjustWWWLCommand}">WWWL</Button>
-            </StackPanel>
-        </Border>
-        <ListBox  Background="Black" DataContext="{Binding SeriesVM}" ItemsSource="{Binding SeriesList}"  Grid.Column="1">
+        <ListBox  Background="Black" DataContext="{Binding SeriesVM}" ItemsSource="{Binding SeriesList}"  Grid.Column="0">
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type core:Series}">
                     <Grid>
@@ -93,7 +89,7 @@
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>
-        <ItemsControl x:Name="DrawingArea" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="2" DataContext="{Binding SceneVM}" ItemsSource="{Binding Path=SceneModel.SceneElements}">
+        <ItemsControl x:Name="DrawingArea" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1" DataContext="{Binding SceneVM}" ItemsSource="{Binding Path=SceneModel.SceneElements}">
             <ItemsControl.Resources>
                 <DataTemplate DataType="{x:Type core:RectangleElement}">
                     <Polygon Points="{Binding Points}" Stroke="Red" StrokeThickness="1" />
@@ -117,7 +113,7 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        <StackPanel DataContext="{Binding SceneVM}" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <StackPanel DataContext="{Binding SceneVM}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock Text="{Binding InstanceNumber}" Foreground="White" />
             <TextBlock Text="{Binding WWWL}" Foreground="White" />
         </StackPanel>
