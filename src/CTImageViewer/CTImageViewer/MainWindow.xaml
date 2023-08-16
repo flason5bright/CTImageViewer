@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CTImageViewer"
         xmlns:core="clr-namespace:CTImageViewer.Core;assembly=CTImageViewer.Core"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="CT Image Viewer"  WindowStartupLocation="CenterScreen" WindowState="Maximized" ContentRendered="OnContentRendered" Style="{DynamicResource CustomWindowChrome1}">
 
@@ -80,14 +82,35 @@
             <ColumnDefinition Width="0.8*"></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListBox  Background="Black" DataContext="{Binding SeriesVM}" ItemsSource="{Binding SeriesList}"  Grid.Column="0">
-            <ListBox.Resources>
-                <DataTemplate DataType="{x:Type core:Series}">
-                    <Grid>
-                        <Image Source="{Binding Source}" Width="200" HorizontalAlignment="Center"/>
-                    </Grid>
+        <ListBox Name="lstSeries"  Background="Black" ItemsSource="{Binding SeriesVM.SeriesList}"  Grid.Column="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="PreviewMouseDoubleClick" >
+                                <i:InvokeCommandAction Command="{Binding ElementName=lstSeries,Path=DataContext.OpenSeriesCommand}" CommandParameter="{Binding }"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Id}" Width="250" Foreground="White" TextTrimming="CharacterEllipsis" ></TextBlock>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger 
+                                                Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" 
+                                                Value="False">
+                                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
+                                <Image Source="{Binding Source}" Width="200" Height="150" HorizontalAlignment="Center" Name="Image"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </ContentControl>
                 </DataTemplate>
-            </ListBox.Resources>
+            </ListBox.ItemTemplate>
         </ListBox>
         <ItemsControl x:Name="DrawingArea" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1" DataContext="{Binding SceneVM}" ItemsSource="{Binding Path=SceneModel.SceneElements}">
             <ItemsControl.Resources>
@@ -96,20 +119,20 @@
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type core:ImageElement}">
                     <Image Width="{Binding Width}"
-                 Height="{Binding Height}"
-                 Source="{Binding Source}"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Top" Margin="{Binding LeftTop}" />
+                           Height="{Binding Height}"
+                           Source="{Binding Source}"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="{Binding LeftTop}" />
                 </DataTemplate>
             </ItemsControl.Resources>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas MouseLeftButtonDown="OnMouseLeftButtonDown"
-                  MouseLeftButtonUp="OnMouseLeftButtonUp"
-                  MouseMove="OnMouseMove"
-                  MouseWheel="OnMouseWheel"
-                  Background="Black"
-                  ClipToBounds="True" />
+                            MouseLeftButtonUp="OnMouseLeftButtonUp"
+                            MouseMove="OnMouseMove"
+                            MouseWheel="OnMouseWheel"
+                            Background="Black"
+                            ClipToBounds="True" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>

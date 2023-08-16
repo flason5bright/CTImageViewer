@@ -15,12 +15,16 @@ namespace CTImageViewer.Core
         {
             var files = Directory.GetFiles( folder );
             Dictionary<string, List<DicomFile>> dicomFilesBySeriesInstanceUID = new();
-            foreach( var filePath in files )
+            foreach ( var filePath in files )
             {
                 var isDicomFile = DicomFile.HasValidHeader( filePath );
                 if( isDicomFile )
                 {
                     var file = DicomFile.Open( filePath );
+                    if (!file.Dataset.Contains(DicomTag.PixelData))
+                    {
+                        continue;
+                    }
                     var seriesInstanceUID = file.Dataset.GetString( DicomTag.SeriesInstanceUID );
                     if( dicomFilesBySeriesInstanceUID.ContainsKey( seriesInstanceUID ) is false )
                     {
@@ -46,57 +50,13 @@ namespace CTImageViewer.Core
                         Height = dicomImage.Height,
                         Thumbnail = imageBytes,
                         BitsPerPixel = 32,
-                        Source = BitmapSource.Create( dicomImage.Width, dicomImage.Height, 96, 96, PixelFormats.Bgra32, null, imageBytes, (PixelFormats.Bgra32.BitsPerPixel * 512 + 7) / 8 )
+                        Source = BitmapSource.Create( dicomImage.Width, dicomImage.Height, 96, 96, PixelFormats.Bgra32, null, imageBytes, (PixelFormats.Bgra32.BitsPerPixel * dicomImage.Width + 7) / 8 ),
+                        Id = dicomFiles.Key
                 } );
             }
 
             return seriesList;
         }
 
-        public byte[] ReadInGroup()
-        {
-            var files = Directory.GetFiles( @"D:\SimulatorImageData\Fluoro" );
-            Dictionary<string, List<DicomFile>> dicomFilesBySeriesInstanceUID = new();
-            foreach( var filePath in files )
-            {
-                var isDicomFile = DicomFile.HasValidHeader( filePath );
-                if( isDicomFile )
-                {
-                    var file = DicomFile.Open( filePath );
-                    var seriesInstanceUID = file.Dataset.GetString( DicomTag.SeriesInstanceUID );
-                    if( dicomFilesBySeriesInstanceUID.ContainsKey( seriesInstanceUID ) is false )
-                    {
-                        dicomFilesBySeriesInstanceUID[ seriesInstanceUID ] = new List<DicomFile>();
-                    }
-
-                    dicomFilesBySeriesInstanceUID[ seriesInstanceUID ].Add( file );
-                }
-            }
-
-            var middleDicomPath = dicomFilesBySeriesInstanceUID.First().Value.First().File.Name;
-            var dicomImage = new DicomImage( middleDicomPath );
-            var inMemoryImage = dicomImage.RenderImage().AsBytes();
-            dicomImage.WindowCenter = 200;
-            dicomImage.WindowWidth = 1200;
-            var inMemoryImageChangeWW = dicomImage.RenderImage().AsBytes();
-            var countOfPixels = dicomImage.Width * dicomImage.Height;
-            var minPixel = int.MaxValue;
-            var maxPixel = int.MinValue;
-            for( var pixelsIndex = 0; pixelsIndex < countOfPixels; pixelsIndex++ )
-            {
-                var pixel = inMemoryImage[ pixelsIndex ];
-                if( pixel < minPixel )
-                {
-                    minPixel = pixel;
-                }
-
-                if( pixel > maxPixel )
-                {
-                    maxPixel = pixel;
-                }
-            }
-
-            return inMemoryImageChangeWW;
-        }
     }
 }

@@ -5,6 +5,7 @@ using System.Windows.Input;
 
 using CTImageViewer.Core;
 using CTImageViewer.ViewModel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace CTImageViewer
 {
@@ -168,5 +169,6 @@ namespace CTImageViewer
             Window win = (Window)((FrameworkElement)sender).TemplatedParent;
             win.Close();
         }
+
     }
 }

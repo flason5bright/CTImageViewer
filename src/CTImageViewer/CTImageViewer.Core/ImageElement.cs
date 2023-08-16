@@ -76,7 +76,7 @@ namespace CTImageViewer.Core
 
         private BitmapSource CreateBitmapSource()
         {
-            return BitmapSource.Create( myDicomImage.Width, myDicomImage.Height, 96, 96, PixelFormats.Bgra32, null, myDicomImage.RenderImage().AsBytes(), (PixelFormats.Bgra32.BitsPerPixel * 512 + 7) / 8 );
+            return BitmapSource.Create( myDicomImage.Width, myDicomImage.Height, 96, 96, PixelFormats.Bgra32, null, myDicomImage.RenderImage().AsBytes(), (PixelFormats.Bgra32.BitsPerPixel * myDicomImage.Width + 7) / 8 );
         }
     }
 }

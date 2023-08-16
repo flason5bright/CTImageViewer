@@ -1,7 +1,11 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
-
+using CTImageViewer.Core;
 using Microsoft.Toolkit.Mvvm.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using TreeView = System.Windows.Controls.TreeView;
 
 namespace CTImageViewer.ViewModel
 {
@@ -17,6 +21,7 @@ namespace CTImageViewer.ViewModel
             ScaleCommand = new RelayCommand(() => Operation = CmdOperation.Scale);
             AdjustWWWLCommand = new RelayCommand(() => Operation = CmdOperation.WWWL);
             Operation = CmdOperation.None;
+            OpenSeriesCommand = new RelayCommand<Series>(OpenSeries);
         }
 
         public ICommand OpenCommand { get; }
@@ -24,6 +29,7 @@ namespace CTImageViewer.ViewModel
         public ICommand MoveCommand { get; }
         public ICommand ScaleCommand { get; }
         public ICommand AdjustWWWLCommand { get; }
+        public RelayCommand<Series> OpenSeriesCommand { get; }
 
         public CmdOperation Operation { get; set; }
 
@@ -37,8 +43,14 @@ namespace CTImageViewer.ViewModel
 
             if (result == DialogResult.OK)
             {
-                SceneVM.LoadSeries(SeriesVM.LoadSeries(dialog.SelectedPath)[0]);
+                var seriesList = SeriesVM.LoadSeries(dialog.SelectedPath);
+                SceneVM.LoadSeries(seriesList[0]);
             }
+        }
+
+        private void OpenSeries(Series series)
+        {
+            SceneVM.LoadSeries(series);
         }
     }
 

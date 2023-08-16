@@ -13,5 +13,6 @@ namespace CTImageViewer.Core
         public int Height { get; set; }
         public int BitsPerPixel { get; set; }
         public BitmapSource Source { get; set; }
+        public string Id { get; set; }
     }
 }
