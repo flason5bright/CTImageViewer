@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-
+using CTImageViewer.Contract;
 using CTImageViewer.Core;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;

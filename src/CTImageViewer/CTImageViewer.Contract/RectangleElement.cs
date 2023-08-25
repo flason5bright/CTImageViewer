@@ -3,7 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
-namespace CTImageViewer.Core
+namespace CTImageViewer.Contract
 {
     public class RectangleElement : SceneElement, ISceneElement
     {

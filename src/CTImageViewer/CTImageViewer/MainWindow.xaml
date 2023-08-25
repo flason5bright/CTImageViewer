@@ -7,6 +7,7 @@
         xmlns:core="clr-namespace:CTImageViewer.Core;assembly=CTImageViewer.Core"
         xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:contract="clr-namespace:CTImageViewer.Contract;assembly=CTImageViewer.Contract"
         mc:Ignorable="d"
         Title="CT Image Viewer"  WindowStartupLocation="CenterScreen" WindowState="Maximized" ContentRendered="OnContentRendered" Style="{DynamicResource CustomWindowChrome1}">
 
@@ -114,10 +115,10 @@
         </ListBox>
         <ItemsControl x:Name="DrawingArea" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Grid.Column="1" DataContext="{Binding SceneVM}" ItemsSource="{Binding Path=SceneModel.SceneElements}">
             <ItemsControl.Resources>
-                <DataTemplate DataType="{x:Type core:RectangleElement}">
+                <DataTemplate DataType="{x:Type contract:RectangleElement}">
                     <Polygon Points="{Binding Points}" Stroke="Red" StrokeThickness="1" />
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type core:ImageElement}">
+                <DataTemplate DataType="{x:Type contract:ImageElement}">
                     <Image Width="{Binding Width}"
                            Height="{Binding Height}"
                            Source="{Binding Source}"

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CTImageViewer.Core
+namespace CTImageViewer.Contract
 {
     public interface IDicomFileManager
     {

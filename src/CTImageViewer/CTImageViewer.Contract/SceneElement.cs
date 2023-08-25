@@ -2,7 +2,7 @@
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 
-namespace CTImageViewer.Core
+namespace CTImageViewer.Contract
 {
     public class SceneElement : ObservableObject
     {

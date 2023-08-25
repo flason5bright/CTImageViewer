@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-
+using CTImageViewer.Contract;
 using FellowOakDicom;
 
 namespace CTImageViewer.Core

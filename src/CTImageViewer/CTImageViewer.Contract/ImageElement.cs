@@ -7,7 +7,7 @@ using FellowOakDicom;
 using FellowOakDicom.Imaging;
 using FellowOakDicom.Imaging.Render;
 
-namespace CTImageViewer.Core
+namespace CTImageViewer.Contract
 {
     public class ImageElement : SceneElement, ISceneElement
     {

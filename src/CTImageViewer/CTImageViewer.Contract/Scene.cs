@@ -5,7 +5,7 @@ using System.Windows;
 
 using FellowOakDicom;
 
-namespace CTImageViewer.Core
+namespace CTImageViewer.Contract
 {
     public class Scene
     {

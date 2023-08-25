@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CTImageViewer.Core\CTImageViewer.Core.csproj" />
     <ProjectReference Include="..\CTImageViewer.ViewModel\CTImageViewer.ViewModel.csproj" />
   </ItemGroup>
 

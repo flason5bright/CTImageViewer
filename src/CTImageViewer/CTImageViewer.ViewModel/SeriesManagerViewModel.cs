@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
+using CTImageViewer.Contract;
 using CTImageViewer.Core;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;

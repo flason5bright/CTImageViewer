@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;
 
 using FellowOakDicom;
 
-namespace CTImageViewer.Core
+namespace CTImageViewer.Contract
 {
     public class Series
     {

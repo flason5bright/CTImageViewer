@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
+using CTImageViewer.Contract;
 using CTImageViewer.Core;
 using CTImageViewer.ViewModel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 
-namespace CTImageViewer.Core
+namespace CTImageViewer.Contract
 {
     public interface ISceneElement
     {
