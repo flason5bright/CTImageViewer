@@ -46,16 +46,16 @@
                                     <Image Source="/CTImageViewer;component/Resources/Decompress.png"></Image>
                                 </Button>
                                 <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}"  Command="{Binding MoveCommand}">
-                                    <Image Source="/CTImageViewer;component/Resources/Compress.png"></Image>
+                                    <Image Source="/CTImageViewer;component/Resources/Hand.jpg"></Image>
                                 </Button>
                                 <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}"  Command="{Binding DrawRectangleCommand}">
-                                    <Image Source="/CTImageViewer;component/Resources/Compress.png"></Image>
+                                    <Image Source="/CTImageViewer;component/Resources/Rectangle.jpg"></Image>
                                 </Button>
                                 <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}" Command="{Binding ScaleCommand}">
-                                    <Image Source="/CTImageViewer;component/Resources/Schedule.png"></Image>
+                                    <Image Source="/CTImageViewer;component/Resources/Scale.jpg"></Image>
                                 </Button>
                                 <Button Margin="0,0,5,0" Width="60" Height="60" Style="{StaticResource MenuButtonStyle}" Command="{Binding AdjustWWWLCommand}">
-                                    <Image Source="/CTImageViewer;component/Resources/Schedule.png"></Image>
+                                    <Image Source="/CTImageViewer;component/Resources/wwwl.jpg"></Image>
                                 </Button>
                             </StackPanel>
                         </StackPanel>
